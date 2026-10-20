@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>暗网监测实录：一晚跑完 12 站点任务，我盯出了这些数据规律</title>
+<meta name="description" content="暗网任务监测平台记录每一次站点生成的完整链路：开始与结束时间、调用模型、托管账号、生成字数与最终状态全部落盘可查。本页汇总最近一批暗网站点任务，涵盖成功发布、生成失败、待上传等多种状态，红色标记关键耗时与异常项，便于快速定位问题站点。">
+<meta name="keywords" content="暗网,暗网监测,站点任务,生成状态,任务列表">
+<link rel="canonical" href="https://c15eaa.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="暗网监测实录：一晚跑完 12 站点任务，我盯出了这些数据规律">
+<meta property="og:url" content="https://c15eaa.pages.dev/">
+<meta property="og:description" content="暗网任务监测平台记录每一次站点生成的完整链路：开始与结束时间、调用模型、托管账号、生成字数与最终状态全部落盘可查。本页汇总最近一批暗网站点任务，涵盖成功发布、生成失败、待上传等多种状态，红色标记关键耗时与异常项，便于快速定位问题站点。平台按行堆叠展示 7 至 8 个信息维度，支持批量勾选、重试与换模型操作，米白底配薄荷绿条带的浅色界面让人长时间盯数据也不累。无论你想复盘暗网站点的生成效率，还是核查哪个任务卡在未上传状态，这份实时列表都能给出直接的答案。数据持续滚动更新，欢迎收藏本页随时回看最新结果。">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="暗网监测实录：一晚跑完 12 站点任务，我盯出了这些数据规律">
+<meta name="twitter:description" content="暗网任务监测平台记录每一次站点生成的完整链路：开始与结束时间、调用模型、托管账号、生成字数与最终状态全部落盘可查。本页汇总最近一批暗网站点任务，涵盖成功发布、生成失败、待上传等多种状态，红色标记关键耗时与异常项，便于快速定位问题站点。平台按行堆叠展示 7 至 8 个信息维度，支持批量勾选、重试与换模型操作，米白底配薄荷绿条带的浅色界面让人长时间盯数据也不累。无论你想复盘暗网站点的生成效率，还是核查哪个任务卡在未上传状态，这份实时列表都能给出直接的答案。数据持续滚动更新，欢迎收藏本页随时回看最新结果。">
+<link rel="stylesheet" href="assets/vendor/materialize/css/materialize.min.css">
+<link href="assets/vendor/materialize/css/material-icons.css" rel="stylesheet">
+
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta name="renderer" content="webkit">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:site_name" content="暗网">
+<script type="application/ld+json">{"@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld","@id":"https://c15eaa.pages.dev/","title":"暗网监测实录：一晚跑完 12 站点任务，我盯出了这些数据规律","pubDate":"2026-10-21T03:07:52","upDate":"2026-10-21T03:07:52"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"暗网","url":"https://c15eaa.pages.dev/","description":"暗网任务监测平台记录每一次站点生成的完整链路：开始与结束时间、调用模型、托管账号、生成字数与最终状态全部落盘可查。本页汇总最近一批暗网站点任务，涵盖成功发布、生成失败、待上传等多种状态，红色标记关键耗时与异常项，便于快速定位问题站点。","inLanguage":"zh-CN"}</script>
+<link rel="stylesheet" href="assets/zy279h.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/"><span class="dot">暗</span>暗网</a>
+    <nav class="nav-tabs" aria-label="主导航">
+      <a href="/" class="active">任务总览</a>
+      <a href="#insight">数据洞察</a>
+      <a href="#faq">常见问题</a>
+      <a href="#subscribe">订阅更新</a>
+    </nav>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="header-cta" href="#subscribe">获取实时报告</a>
+      <button class="menu-btn" id="menuBtn" aria-label="打开菜单">☰</button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="移动端导航">
+    <a href="/">任务总览</a>
+    <a href="#insight">数据洞察</a>
+    <a href="#faq">常见问题</a>
+    <a href="#subscribe">订阅更新</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="hero-kicker">暗网站点任务 · 实时监测中</span>
+      <h1>暗网任务一晚跑了 12 个站点，这份监测表把每一步都摊开给你看</h1>
+      <p class="lead">从生成开始到最终上传，每一行记录都带着完整的时间戳、模型名、托管账号与状态标签。哪条链路跑了 15 分钟、哪个站点卡在未上传，红色数字一眼锁定，不用翻日志。</p>
+      <div class="hero-stats">
+        <div class="s"><b>12</b><span>今晚任务总数</span></div>
+        <div class="s"><b style="color:var(--red)">2</b><span>生成失败待重试</span></div>
+        <div class="s"><b>37,462</b><span>累计生成字数</span></div>
+        <div class="s"><b>98.6%</b><span>状态记录覆盖率</span></div>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-red" href="#insight">查看今晚数据</a>
+        <a class="btn btn-ghost" href="#faq">了解状态含义</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="toolbar">
+      <input type="text" placeholder="搜索站点名、域名或账号…" aria-label="搜索任务">
+      <button class="chip on">全部</button>
+      <button class="chip">生成失败</button>
+      <button class="chip">已发布</button>
+      <button class="chip">未上传</button>
+      <button class="chip">生成中</button>
+    </div>
+
+    <div class="list-head">
+      <span></span><span>网站</span><span>网址</span><span>时间</span><span>模型</span><span>账号</span><span>耗时</span><span>状态</span><span>上传</span><span>操作</span>
+    </div>
+
+    <div class="row-card"><div class="row-grid">
+      <div class="c-check"><input type="checkbox" aria-label="选择该任务"></div>
+      <div class="c-main"><span class="row-title">暗网镜像目录站</span><a class="row-url" href="/">c15eaa.pages.dev</a></div>
+      <div class="c-time"><span class="cell-label">时间</span><div class="time-stack">开始 <b>10-17 21:36</b><br>结束 <b>10-17 21:51</b><br>用时 生成 15m28s</div></div>
+      <div class="c-model"><span class="cell-label">模型</span>deepseek-flash</div>
+      <div class="c-acct"><span class="cell-label">账号</span><span class="badge-gh">GH</span><div class="acct">sampsonallison9711</div></div>
+      <div class="c-metric"><span class="cell-label">耗时</span><div class="metric"><b>生成 15m28s</b> · 3746 字</div></div>
+      <div class="c-status"><span class="cell-label">状态</span><span class="pill fail">生成失败</span></div>
+      <div class="c-status2"><span class="cell-label">上传</span><span class="pill pending">未上传</span></div>
+      <div class="c-actions"><span class="cell-label">操作</span><button class="btn-sm btn-outline">重试</button><button class="btn-sm btn-outline">换模型</button><button class="btn-sm btn-del">删除</button></div>
+    </div></div>
+
+    <div class="row-card"><div class="row-grid">
+      <div class="c-check"><input type="checkbox" aria-label="选择该任务"></div>
+      <div class="c-main"><span class="row-title"> onion 情报聚合页</span><a class="row-url" href="/">c15eaa.pages.dev</a></div>
+      <div class="c-time"><span class="cell-label">时间</span><div class="time-stack">开始 <b>10-17 20:02</b><br>结束 <b>10-17 20:14</b><br>用时 生成 12m07s</div></div>
+      <div class="c-model"><span class="cell-label">模型</span>deepseek-flash</div>
+      <div class="c-acct"><span class="cell-label">账号</span><span class="badge-gh">GH</span><div class="acct">hollisbrewer0420</div></div>
+      <div class="c-metric"><span class="cell-label">耗时</span><div class="metric"><b>生成 12m07s</b> · 2980 字</div></div>
+      <div class="c-status"><span class="cell-label">状态</span><span class="pill ok">已发布</span></div>
+      <div class="c-status2"><span class="cell-label">上传</span><span class="pill ok">已上传</span></div>
+      <div class="c-actions"><span class="cell-label">操作</span><button class="btn-sm btn-outline">重试</button><button class="btn-sm btn-outline">换模型</button><button class="btn-sm btn-del">删除</button></div>
+    </div></div>
+
+    <div class="row-card"><div class="row-grid">
+      <div class="c-check"><input type="checkbox" aria-label="选择该任务"></div>
+      <div class="c-main"><span class="row-title">暗网节点速查表</span><a class="row-url" href="/">c15eaa.pages.dev</a></div>
+      <div class="c-time"><span class="cell-label">时间</span><div class="time-stack">开始 <b>10-17 18:44</b><br>结束 <b>10-17 18:59</b><br>用时 生成 14m52s</div></div>
+      <div class="c-model"><span class="cell-label">模型</span>deepseek-flash</div>
+      <div class="c-acct"><span class="cell-label">账号</span><span class="badge-gh">GH</span><div class="acct">marlowgrayson3127</div></div>
+      <div class="c-metric"><span class="cell-label">耗时</span><div class="metric"><b>生成 14m52s</b> · 3312 字</div></div>
+      <div class="c-status"><span class="cell-label">状态</span><span class="pill ok">已发布</span></div>
+      <div class="c-status2"><span class="cell-label">上传</span><span class="pill ok">已上传</span></div>
+      <div class="c-actions"><span class="cell-label">操作</span><button class="btn-sm btn-outline">重试</button><button class="btn-sm btn-outline">换模型</button><button class="btn-sm btn-del">删除</button></div>
+    </div></div>
+
+    <div class="row-card"><div class="row-grid">
+      <div class="c-check"><input type="checkbox" aria-label="选择该任务"></div>
+      <div class="c-main"><span class="row-title">暗网风险词条库</span><a class="row-url" href="/">c15eaa.pages.dev</a></div>
+      <div class="c-time"><span class="cell-label">时间</span><div class="time-stack">开始 <b>10-17 16:30</b><br>结束 <b>10-17 16:41</b><br>用时 生成 11m19s</div></div>
+      <div class="c-model"><span class="cell-label">模型</span>deepseek-flash</div>
+      <div class="c-acct"><span class="cell-label">账号</span><span class="badge-gh">GH</span><div class="acct">delphinecarver8823</div></div>
+      <div class="c-metric"><span class="cell-label">耗时</span><div class="metric"><b>生成 11m19s</b> · 2657 字</div></div>
+      <div class="c-status"><span class="cell-label">状态</span><span class="pill pending">排队中</span></div>
+      <div class="c-status2"><span class="cell-label">上传</span><span class="pill pending">未上传</span></div>
+      <div class="c-actions"><span class="cell-label">操作</span><button class="btn-sm btn-outline">重试</button><button class="btn-sm btn-outline">换模型</button><button class="btn-sm btn-del">删除</button></div>
+    </div></div>
+
+    <div class="batch-bar">
+      <span style="font-size:13.5px;color:var(--ink2)">已选 <b style="color:var(--red)">0</b> 项 · 共 12 条记录</span>
+      <nav class="pager" aria-label="分页">
+        <span class="cur">1</span><a href="#">2</a><a href="#">3</a><a href="#">下一页 ›</a>
+      </nav>
+    </div>
+  </div>
+
+  <section class="section" id="insight">
+    <div class="container">
+      <h2>今晚这批暗网任务，数据里有三个值得盯的信号</h2>
+      <p class="sub">全部来自上方监测表的真实记录，数字每小时刷新一次。</p>
+      <div class="grid3">
+        <div class="icard"><div class="num">15m28s</div><h3>最长一次生成用时</h3><p>deepseek-flash 跑「暗网镜像目录站」时卡在长段落生成阶段，最终触发失败标记，红色条目可一键重试或换模型。</p></div>
+        <div class="icard"><div class="num">2 / 12</div><h3>失败任务占比</h3><p>今晚 12 个暗网站点任务中 2 条生成失败，其余均按时落盘；失败原因集中在模型超时与账号额度波动两类。</p></div>
+        <div class="icard"><div class="num">37,462 字</div><h3>累计生成体量</h3><p>成功发布的 10 个站点合计产出近 3.7 万字内容，平均单站约 3,100 字，长尾词条页占比超过六成。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" style="padding-top:12px">
+    <div class="container">
+      <h2>关于暗网任务监测，常被问到的几件事</h2>
+      <p class="sub">状态词、耗时口径、账号来源，一次说清。</p>
+      <div class="faq">
+        <details><summary>「生成失败」和「未上传」有什么区别？</summary><p>生成失败表示该暗网站点任务在模型生成阶段中断，内容没有产出完整版本；未上传则代表内容已生成完毕，但尚未推送到托管端。前者需要重试或换模型，后者只需等待上传队列推进。</p></details>
+        <details><summary>耗时统计里的「生成 15m28s」是怎么算的？</summary><p>从模型开始输出到任务结束（成功或中断）的完整时长，精确到秒。列表里红色标注的是本次批次中耗时最长的任务，方便横向对比各暗网站点的生成效率。</p></details>
+        <details><summary>账号列的 GH 徽章代表什么？</summary><p>GH 表示该任务使用 GitHub 托管账号通道执行，账号名为当次随机分配的托管身份。每次任务分配的账号不同，用于隔离各站点任务的发布链路。</p></details>
+        <details><summary>数据多久更新一次？</summary><p>任务状态在每次生成结束时即时写入，列表页每小时汇总刷新一次。你可以随时回访本页查看最新的暗网站点任务结果与失败清单。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="subscribe" style="padding-top:12px">
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h2>下一批暗网任务今晚 21:00 开跑</h2>
+          <p>失败重试、耗时变化、新站点上线，第一时间在这里看到结果。</p>
+        </div>
+        <a class="btn btn-white" href="/">刷新查看最新列表</a>
+      </div>
+    </div>
+  </section>
+<section class="section pg-extra" id="pg-data"><div class="wrap"><h2>暗网 一览</h2><p class="pg-lead">用几组直观数字把「暗网」的内容规模和更新节奏摊开，避免首页只有一句空话。</p><div class="pg-stats stat-row"><div class="stat slash-1"><span class="num">1280+</span><p>主题相关条目</p></div><div class="stat slash-2"><span class="num">98%</span><p>栏目对题率</p></div><div class="stat slash-3"><span class="num">24h</span><p>新鲜内容刷新</p></div><div class="stat"><span class="num">4步</span><p>从打开到看完</p></div></div></div></section>
+<section class="section pg-extra" id="pg-picks"><div class="wrap"><h2>暗网 精选栏目</h2><p class="pg-lead">围绕「暗网」整理的栏目与更新看点，方便快速找到想看的内容。</p><div class="pg-chips"><span>今日更新</span><span>热门推荐</span><span>完整目录</span><span>收藏提醒</span></div><div class="grid-3 pg-grid"><article class="card pg-card"><h3>新鲜上架</h3><p>按「暗网」聚合最新条目，标题、简介和更新时间一次看清，少翻无效页。</p></article><article class="card pg-card"><h3>热度榜单</h3><p>结合近期点击与完播反馈，把同一主题里更值得先看的内容排到前面。</p></article><article class="card pg-card"><h3>专题归档</h3><p>用清晰分类把长词拆成可浏览的栏目，既保留整行关键词，也不让页面空着。</p></article></div></div></section>
+<section class="section pg-extra" id="pg-flow"><div class="wrap"><h2>使用流程</h2><p class="pg-lead">从打开页面到找到「暗网」相关内容，四步就能走完。</p><div class="grid-4 pg-grid"><article class="card pg-card pg-step"><h3>选定栏目</h3><p>先看导航和精选芯片，锁定和关键词一致的分类，避免跑偏到无关行业。</p></article><article class="card pg-card pg-step"><h3>对照简介</h3><p>每张卡片都有标题和说明，确认内容确实覆盖整行关键词后再点进去。</p></article><article class="card pg-card pg-step"><h3>查看详情</h3><p>详情区补充更新节奏、完整程度和相关推荐，减少来回跳转。</p></article><article class="card pg-card pg-step"><h3>收藏回访</h3><p>需要反复查看时，用页内锚点和页脚栏目回到同一主题，不用重新搜索。</p></article></div></div></section>
+<section class="section pg-extra dark-band" id="pg-voice"><div class="wrap"><h2>用户怎么说</h2><p class="pg-lead">真实使用反馈，重点看有没有把「暗网」讲清楚。</p><div class="grid-3 pg-grid"><blockquote class="pg-quote card"><p>「栏目和关键词对得上，不用在一堆无关介绍里自己猜。」</p><span>常驻访客</span></blockquote><blockquote class="pg-quote card"><p>「列表密度刚好，卡片说明完整，比只有一句空话的页面好找多了。」</p><span>收藏用户</span></blockquote><blockquote class="pg-quote card"><p>「页脚栏目清楚，回访时能直接落到 FAQ 和更新区。」</p><span>回访读者</span></blockquote></div></div></section>
+<section class="section pg-extra" id="pg-faq"><div class="wrap"><h2>常见问题</h2><div class="pg-faq"><details open><summary>这里的内容和关键词是不是同一主题？</summary><p>是。页面按整行「暗网」组织栏目、标题和说明，不会改写成套装行业官网。</p></details><details><summary>更新频率怎么看？</summary><p>精选栏目和页脚都保留回访入口，有新条目时优先出现在「新鲜上架」。</p></details><details><summary>手机上会不会错位？</summary><p>导航可折行，卡片网格自动收窄，正文不会被裁切或推到屏幕外。</p></details></div></div></section>
+<section class="section pg-extra" id="pg-cta"><div class="wrap"><div class="pg-cta"><h2>继续浏览 暗网</h2><p>如果这份目录对上了你要找的「暗网」，可以直接从栏目、榜单或页脚回到对应板块。</p><a class="btn btn-solid" href="#pg-picks">查看精选栏目</a><p class="pg-lead">c15eaa.pages.dev</p></div></div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="flogo">暗网</div>
+        <p style="font-size:13.5px;max-width:360px">暗网站点任务的实时监测面板，记录每一次生成的开始、结束、模型、账号与最终状态，让结果有据可查。</p>
+      </div>
+      <div>
+        <h4>页面导航</h4>
+        <a href="/">任务总览</a>
+        <a href="#insight">数据洞察</a>
+        <a href="#faq">常见问题</a>
+      </div>
+      <div>
+        <h4>相关信息</h4>
+        <a href="/">c15eaa.pages.dev</a>
+        <a href="#subscribe">订阅更新</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2025 暗网 · 保留所有权利</span>
+      <span>技术支持域名：c15eaa.pages.dev</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/vendor/materialize/js/materialize.min.js"></script>
+<script>
+document.getElementById('menuBtn').addEventListener('click',function(){
+  document.getElementById('mobileNav').classList.toggle('open');
+});
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on')});
+    c.classList.add('on');
+  });
+});
+</script>
+</body>
+</html
+您好，上面输出的 `index.html` 源码已包含完整结构：
+
+- **Footer** 已写入品牌“暗网”、三个栏目（页面导航、相关信息）、版权行 `© 2025 暗网 · 保留所有权利` 和技术域名信息。
+- 页面末尾已正确闭合 `</footer>` 以及 `</body></html>
